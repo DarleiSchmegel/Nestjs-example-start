@@ -1,0 +1,42 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Inscribed {
+  """Example field (placeholder)"""
+  _id: String!
+
+  """Example field (placeholder)"""
+  cpf: String!
+
+  """Example section"""
+  section: String!
+}
+
+type Query {
+  inscribeds: [Inscribed!]!
+  inscribed(id: Int!): Inscribed!
+}
+
+type Mutation {
+  createInscribed(createInscribedInput: CreateInscribedInput!): Inscribed!
+  updateInscribed(updateInscribedInput: UpdateInscribedInput!): Inscribed!
+  removeInscribed(id: Int!): Inscribed!
+}
+
+input CreateInscribedInput {
+  """Example field (placeholder)"""
+  cpf: String!
+
+  """Example section"""
+  section: String!
+}
+
+input UpdateInscribedInput {
+  """Example field (placeholder)"""
+  cpf: String
+
+  """Example section"""
+  section: String
+  id: Int!
+}

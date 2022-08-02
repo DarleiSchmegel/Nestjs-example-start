@@ -1,4 +1,6 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
+
+import { Presence } from '../../presences/entities/presence.entity';
 
 @ObjectType()
 export class Inscribed {
@@ -8,6 +10,12 @@ export class Inscribed {
   @Field(() => String, { description: 'Example field (placeholder)' })
   cpf: string;
 
-  @Field(() => String, { description: 'Example section' })
-  section: string;
+  @Field(() => Presence, { description: 'Example field (placeholder)' })
+  presencesId: Presence[];
+
+  @Field(() => Date, {
+    description: 'Example field (placeholder)',
+    nullable: true,
+  })
+  dateTime: string;
 }

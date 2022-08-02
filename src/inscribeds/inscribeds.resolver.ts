@@ -12,7 +12,6 @@ export class InscribedsResolver {
   createInscribed(
     @Args('createInscribedInput') createInscribedInput: CreateInscribedInput,
   ) {
-    console.log(createInscribedInput);
     return this.inscribedsService.create(createInscribedInput);
   }
 
@@ -22,8 +21,8 @@ export class InscribedsResolver {
   }
 
   @Query(() => Inscribed, { name: 'inscribed' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.inscribedsService.findOne(id);
+  findOne(@Args('cpf', { type: () => String }) cpf: string) {
+    return this.inscribedsService.findOne(cpf);
   }
 
   @Mutation(() => Inscribed)
@@ -31,7 +30,7 @@ export class InscribedsResolver {
     @Args('updateInscribedInput') updateInscribedInput: UpdateInscribedInput,
   ) {
     return this.inscribedsService.update(
-      updateInscribedInput.id,
+      updateInscribedInput.cpf,
       updateInscribedInput,
     );
   }

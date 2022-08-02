@@ -7,6 +7,8 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { InscribedsModule } from './inscribeds/inscribeds.module';
+import { PresencesModule } from './presences/presences.module';
+import { SectionsModule } from './sections/sections.module';
 
 @Module({
   imports: [
@@ -19,8 +21,10 @@ import { InscribedsModule } from './inscribeds/inscribeds.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      include: [InscribedsModule],
+      include: [InscribedsModule, PresencesModule, SectionsModule],
     }),
+    PresencesModule,
+    SectionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

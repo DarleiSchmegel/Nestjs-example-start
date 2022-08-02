@@ -2,6 +2,45 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Section {
+  """Example field (placeholder)"""
+  _id: String!
+
+  """What type of event"""
+  type: String!
+
+  """Start Date Time of Section"""
+  startTime: DateTime!
+
+  """End Date Time of Section"""
+  endTime: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Presence {
+  """Example field (placeholder)"""
+  _id: String!
+
+  """Example field (placeholder)"""
+  inscribedId: Inscribed!
+
+  """Start Date Time of Section"""
+  readDateTime: DateTime!
+
+  """Example field (placeholder)"""
+  inscribed_cpf: String!
+
+  """Example field (placeholder)"""
+  sectionId: Section!
+
+  """'presenter' | 'listener' | 'support'"""
+  presenceType: String!
+}
+
 type Inscribed {
   """Example field (placeholder)"""
   _id: String!
@@ -9,34 +48,100 @@ type Inscribed {
   """Example field (placeholder)"""
   cpf: String!
 
-  """Example section"""
-  section: String!
+  """Example field (placeholder)"""
+  presencesId: Presence!
+
+  """Example field (placeholder)"""
+  dateTime: DateTime
 }
 
 type Query {
+  sections: [Section!]!
+  section(id: Int!): Section!
+  presences: [Presence!]!
+  presence(id: Int!): Presence!
   inscribeds: [Inscribed!]!
-  inscribed(id: Int!): Inscribed!
+  inscribed(cpf: String!): Inscribed!
 }
 
 type Mutation {
+  createSection(createSectionInput: CreateSectionInput!): Section!
+  updateSection(updateSectionInput: UpdateSectionInput!): Section!
+  removeSection(id: Int!): Section!
+  createPresence(createPresenceInput: CreatePresenceInput!): Presence!
+  updatePresence(updatePresenceInput: UpdatePresenceInput!): Presence!
+  removePresence(id: Int!): Presence!
   createInscribed(createInscribedInput: CreateInscribedInput!): Inscribed!
   updateInscribed(updateInscribedInput: UpdateInscribedInput!): Inscribed!
   removeInscribed(id: Int!): Inscribed!
 }
 
+input CreateSectionInput {
+  """What type of event"""
+  type: String!
+
+  """Start Date Time of Section"""
+  startTime: DateTime!
+
+  """End Date Time of Section"""
+  endTime: DateTime!
+}
+
+input UpdateSectionInput {
+  """What type of event"""
+  type: String
+
+  """Start Date Time of Section"""
+  startTime: DateTime
+
+  """End Date Time of Section"""
+  endTime: DateTime
+  id: Int!
+}
+
+input CreatePresenceInput {
+  """Example field (placeholder)"""
+  inscribedId: String!
+
+  """Example field (placeholder)"""
+  inscribed_cpf: String!
+
+  """Example section"""
+  sectionId: String!
+
+  """Example field (placeholder)"""
+  dateTime: DateTime!
+
+  """Example section"""
+  presenceType: String!
+}
+
+input UpdatePresenceInput {
+  """Example field (placeholder)"""
+  inscribedId: String
+
+  """Example field (placeholder)"""
+  inscribed_cpf: String
+
+  """Example section"""
+  sectionId: String
+
+  """Example field (placeholder)"""
+  dateTime: DateTime
+
+  """Example section"""
+  presenceType: String
+  id: Int!
+}
+
 input CreateInscribedInput {
   """Example field (placeholder)"""
   cpf: String!
-
-  """Example section"""
-  section: String!
 }
 
 input UpdateInscribedInput {
   """Example field (placeholder)"""
   cpf: String
-
-  """Example section"""
-  section: String
-  id: Int!
+  _id: String!
+  presenceId: String!
 }
